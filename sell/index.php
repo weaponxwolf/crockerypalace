@@ -198,7 +198,7 @@ include_once "../components/forchild/head.php";
                                     <!-- Row start -->
                                     <div class="row gutters">
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                            <a href="index.html" class="invoice-logo">
+                                            <a href="#" class="invoice-logo">
                                                 CrockeryPalace
                                             </a>
                                         </div>
@@ -291,13 +291,39 @@ include_once "../components/forchild/head.php";
     </div>
     <?php include_once '../components/forchild/scripts.php'; ?>
     <script>
-        function createInvoice() {
-            var nameaddress=$("#nameaddress").val();
-            var contactno=$("#contact").val();
-            var table=$("#listtable");
-           
-            $.post('createinvoice.php', {
+        function tablecont() {
+            var obj = [];
+            var table = document.querySelector("#listtable");
+            for (let index = 1; index < table.rows.length; index++) {
+                var pdt = {
+                    id: table.rows[index].cells[1].innerHTML,
+                    quantity: table.rows[index].cells[2].innerHTML,
+                    subtotal: table.rows[index].cells[3].innerHTML,
+                }
+                obj.push(pdt);
+            }
+            return obj;
+        }
 
+        function createInvoice() {
+            var nameaddress = $("#nameaddress").val();
+            var contactno = $("#contact").val();
+            var pdtarray = tablecont();
+            var charges = $("#charges").val();
+            var discount = $("#discount").val();
+            var amt = $("#totalamt").html();
+            var finalamt = parseInt(charges) - parseInt(discount) + parseInt(amt);
+            console.log(pdtarray);
+            $.post('createinvoice.php', {
+                products: pdtarray,
+                nameadd: nameaddress,
+                contact: contactno,
+                charges: charges,
+                discount: discount,
+                totalamt: amt,
+                finalamt: finalamt
+            }, function(data, status) {
+                window.location.href = "invoice.php?invoiceno=" + data;
             });
         }
 
@@ -394,8 +420,6 @@ include_once "../components/forchild/head.php";
                     var subtotalRs = stArr[1];
                     total = total + parseFloat(subtotalRs);
                 }
-
-                console.log(total);
                 $("#enter").html(`<div style="display: flex;" id="morebuttons">
                                         <div style="padding: 1rem"><button type="button" class="btn btn-success">Total: Rs <span id='totalamt'>${total}</span></button></div>
                                         <div style="padding: 1rem"><input type="number" id="charges" placeholder="Extra Charges + TAX"></div>
