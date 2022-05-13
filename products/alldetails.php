@@ -43,7 +43,7 @@ include_once "../components/forchild/head.php";
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="m-b-md">
-                                                    <h1><?php echo $row['name'] ?></h1>
+                                                    <h1><?php echo $row['company_name'] ?> <?php echo $row['name'] ?></h1>
                                                 </div>
                                                 <dl class="dl-horizontal">
                                                     <dt>PRODUCT ID:</dt>
@@ -84,7 +84,7 @@ include_once "../components/forchild/head.php";
                         <div class="col-md-3">
                             <div class="wrapper wrapper-content project-manager">
                                 <p class="small">
-                                    <img src="../assets/img/default-supplier.png" style="max-height: 50vh;max-width:50vh" alt="project-image" class="rounded">
+                                    <!-- <img src="../assets/img/default-supplier.png" style="max-height: 50vh;max-width:50vh" alt="project-image" class="rounded"> -->
                                 </p>
 
                             </div>

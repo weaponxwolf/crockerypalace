@@ -66,7 +66,7 @@ include_once "../components/forchild/head.php";
     <script>
         $(document).ready(function() {
 
-            fetch('../apis/select/selectall.php?data=suppliers')
+            fetch('../apis/select/suppliers.php')
                 .then(response => response.json())
                 .then(data => {
                     data.forEach(element => {
@@ -82,11 +82,7 @@ include_once "../components/forchild/head.php";
 
                 });
             $("#searchsupplier").keyup(function() {
-                $.get('../apis/search/searchall.php', {
-                    data: 'suppliers',
-                    search: 'name',
-                    value: this.value
-                }, function(data, status, xhr) {
+                $.get('../apis/search/suppliersbyname.php?data='+this.value, function(data, status, xhr) {
                     $("#thetable").html('');
                     var d = JSON.parse(data);
                     d.forEach(element => {

@@ -203,11 +203,11 @@ include_once "../components/forchild/head.php";
                                             </a>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <address class="text-right">
+                                            <!-- <address class="text-right">
                                                 Maxwell admin Inc, 45 NorthWest Street.<br>
                                                 Sunrise Blvd, San Francisco.<br>
                                                 00000 00000
-                                            </address>
+                                            </address> -->
                                         </div>
                                     </div>
                                     <!-- Row end -->
@@ -225,8 +225,8 @@ include_once "../components/forchild/head.php";
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                             <div class="invoice-details">
                                                 <div class="invoice-num">
-                                                    <div>Invoice - #009</div>
-                                                    <div>January 10th 2020</div>
+                                                    <div></div>
+                                                    <div><?php echo Date('F dS Y') ?></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -313,7 +313,6 @@ include_once "../components/forchild/head.php";
             var discount = $("#discount").val();
             var amt = $("#totalamt").html();
             var finalamt = parseInt(charges) - parseInt(discount) + parseInt(amt);
-            console.log(pdtarray);
             $.post('createinvoice.php', {
                 products: pdtarray,
                 nameadd: nameaddress,

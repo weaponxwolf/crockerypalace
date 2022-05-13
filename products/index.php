@@ -41,7 +41,10 @@ include_once "../components/forchild/head.php";
         <div class="container" id="mainpart">
 
             <h1>Products</h1>
-            <p><a href="addproducts.php">Add Products</a></p>
+            <p><a href="addproducts.php">Add Products</a> |
+            <a href="categories.php">Manage Categories</a> |
+            <a href="units.php">Manage Units</a>
+        </p>
             <input type="text" placeholder="Search.." id="searchsupplier">
             <br> <br>
             <div style="max-height: 45vh;overflow-y:scroll;">

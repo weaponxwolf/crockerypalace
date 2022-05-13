@@ -27,7 +27,7 @@ include_once "../components/forchild/head.php";
     <div>
         <?php
         $username = $_SESSION['username'];
-        $sql = "SELECT username,first_name,last_name,qualification,`address`,cities.name AS city,countries.name AS country,states.name AS `state`,privilege,`role`,email,phone,pincode FROM `users`LEFT JOIN `states` ON users.state=states.id LEFT JOIN countries ON users.country=countries.id LEFT JOIN cities ON users.city=cities.id  WHERE `username`='$username'";
+        $sql = "SELECT username,gender,first_name,last_name,qualification,`address`,cities.name AS city,countries.name AS country,states.name AS `state`,privilege,`role`,email,phone,pincode FROM `users`LEFT JOIN `states` ON users.state=states.id LEFT JOIN countries ON users.country=countries.id LEFT JOIN cities ON users.city=cities.id  WHERE `username`='$username'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) { ?>
@@ -38,7 +38,15 @@ include_once "../components/forchild/head.php";
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                            <?php
+                                            $img="";
+                                            if ($row['gender']=='male') {
+                                                $img="../assets/img/boy.png";
+                                            }else{
+                                                $img="../assets/img/girl.png";
+                                            }
+                                            ?>
+                                            <img src="<?php echo $img ?>" alt="Admin" class="rounded-circle" width="150">
                                             <div class="mt-3">
                                                 <h4><?php echo $row['first_name'] . " " . $row['last_name'] ?></h4>
                                                 <p class="text-secondary mb-1"><?php echo $row['role'] ?></p>
@@ -59,6 +67,15 @@ include_once "../components/forchild/head.php";
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <?php echo $row['first_name'] . " " . $row['last_name'] ?>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Gender</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <?php echo $row['gender']; ?>
                                             </div>
                                         </div>
                                         <hr>

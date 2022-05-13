@@ -99,7 +99,7 @@ include_once "../components/forchild/head.php";
                             <textarea name="notes" class="form-control" rows="3"></textarea>
                         </div>
                         <hr>
-                        <button type="submit" class="btn btn-outline-primary">Add Employee</button>
+                        <button type="submit" class="btn btn-outline-primary">Add Supplier</button>
                     </form>
                 </div>
                 <div class="col">

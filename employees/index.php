@@ -39,7 +39,9 @@ include_once "../components/forchild/head.php";
         <div class="container" id="mainpart">
 
             <h1>Employees</h1>
-            <p><a href="addemployee.php">Add Employee</a></p>
+            <p><a href="addemployee.php">Add Employee</a> |
+                <a href="roles.php">Manage Roles</a>
+            </p>
             <input type="text" placeholder="Search.." id="searchemployee">
             <br> <br>
             <div style="max-height: 45vh;overflow-y: scroll;">

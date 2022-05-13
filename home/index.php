@@ -34,7 +34,8 @@ include_once "../components/forchild/head.php";
                 background-color: rgba(46, 42, 52, 0.078);
                 cursor: pointer;
             }
-            a:link{
+
+            a:link {
                 text-decoration: none;
             }
         </style>
@@ -52,12 +53,13 @@ include_once "../components/forchild/head.php";
                         </div>
                     </a>
                 </div>
-                <div class="col-xl-3 col-lg-6"><a href="../orders/">
-                        <div class="card l-bg-blue-dark home-card text-dark">
+
+                <div class="col-xl-3 col-lg-6 "><a href="../sales/">
+                        <div class="card l-bg-cherry home-card text-dark">
                             <div class="card-statistic-3 p-4">
-                                <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                                <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
                                 <div class="mb-4">
-                                    <h1 class="card-title mb-0 text-dark">Orders</h1>
+                                    <h1 class="card-title mb-0 text-dark">Sales </h1>
                                 </div>
                             </div>
                         </div>

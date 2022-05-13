@@ -26,122 +26,119 @@ include_once "../components/forchild/head.php";
             </div>
         </div>
         <div class="container">
-            <a href="update.php"> <button type="button" class="btn btn-success">Update Stocks</button>
-            </a>
-
+            <h1>Update Stocks</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                            <div class="input-append span12">
+                                <input id="enterproduct" type="text" class="search-query" placeholder="Search">
+                                <button type="submit" class="btn"><i class="icon-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <hr>
         </div>
-        <br>
         <div class="container">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-            <style>
-                .card {
-                    background-color: #fff;
-                    border-radius: 10px;
-                    border: none;
-                    position: relative;
-                    margin-bottom: 30px;
-                    box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
-                }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">PDT ID</th>
+                        <th scope="col">PRODUCT</th>
+                        <th scope="col">COMPANY</th>
+                        <th scope="col">STOCKS</th>
+                        <th scope="col">(+) OR (-) UNITS</th>
+                        <th scope="col">UPDATE</th>
+                    </tr>
+                </thead>
 
-                .l-bg-cherry {
-                    background: linear-gradient(to right, #493240, #f09) !important;
-                    color: #fff;
-                }
-
-                .l-bg-blue-dark {
-                    background: linear-gradient(to right, #373b44, #4286f4) !important;
-                    color: #fff;
-                }
-
-                .l-bg-green-dark {
-                    background: linear-gradient(to right, #0a504a, #38ef7d) !important;
-                    color: #fff;
-                }
-
-                .l-bg-orange-dark {
-                    background: linear-gradient(to right, #a86008, #ffba56) !important;
-                    color: #fff;
-                }
-
-                .card .card-statistic-3 .card-icon-large .fas,
-                .card .card-statistic-3 .card-icon-large .far,
-                .card .card-statistic-3 .card-icon-large .fab,
-                .card .card-statistic-3 .card-icon-large .fal {
-                    font-size: 110px;
-                }
-
-                .card .card-statistic-3 .card-icon {
-                    text-align: center;
-                    line-height: 50px;
-                    margin-left: 15px;
-                    color: #000;
-                    position: absolute;
-                    right: -5px;
-                    top: 20px;
-                    opacity: 0.1;
-                }
-
-                .l-bg-cyan {
-                    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
-                    color: #fff;
-                }
-
-                .l-bg-green {
-                    background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
-                    color: #fff;
-                }
-
-                .l-bg-orange {
-                    background: linear-gradient(to right, #f9900e, #ffba56) !important;
-                    color: #fff;
-                }
-
-                .l-bg-cyan {
-                    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
-                    color: #fff;
-                }
-            </style>
-
-            <div class="col-md-10 ">
-                <div class="row ">
+                <tbody id="thetable">
                     <?php
-                    $sql = "SELECT * FROM `pdt_categories`";
+
+                    $sql = "SELECT units.name AS unit_name, units,products.pdt_id AS product_id, products.name AS product_name, companies.name AS company_name FROM `products` LEFT JOIN `stocks` ON products.pdt_id=stocks.pdt_id LEFT JOIN `companies` ON companies.reg_id=products.company_id LEFT JOIN `units` ON units.id=products.unit_id";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) { ?>
-                            <div class="col-xl-3 col-lg-6">
-                                <div class="card l-bg-cherry">
-                                    <div class="card-statistic-3 p-4">
-                                        <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
-                                        <div class="mb-4">
-                                            <h5 class="card-title mb-0"><?php echo $row['name'] ?></h5>
-                                        </div>
-                                        <div class="row align-items-center mb-2 d-flex">
-                                            <div class="col-8">
-                                                <h2 class="d-flex align-items-center mb-0">
-                                                    3,243
-                                                </h2>
-                                            </div>
-                                            <div class="col-4 text-right">
-                                                <span>12.5% <i class="fa fa-arrow-up"></i></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            <tr>
+                                <th scope="row"><?php echo $row['product_id'] ?></th>
+                                <td><?php echo $row['product_name'] ?></td>
+                                <td><?php echo $row['company_name'] ?></td>
+                                <td><span id="units_<?php echo $row['product_id']; ?>"><?php echo $row['units'] ?> </span> <?php echo $row['unit_name'] ?></td>
+                                <td>
+                                    <input type="number" name="aors" id="aors_<?php echo $row['product_id']; ?>">
+                                </td>
+                                <td id="updatestatus_<?php echo $row['product_id'] ?>">
+                                    <button type="button" onclick="updatestock(this)" id="update_<?php echo $row['product_id'] ?>" class="btn btn-success">Update</button>
+                                </td>
+                            </tr>
                     <?php
-
                         }
                     } else {
                         return 0;
                     } ?>
 
-                </div>
-            </div>
+
+                </tbody>
+            </table>
         </div>
     </main>
     <?php include_once '../components/forchild/scripts.php'; ?>
+    <script>
+        function redo(params) {
+            const myArray = params.id.split("_");
+            $("#aors_" + myArray[1]).val(0);
+            $("#updatestatus_" + myArray[1]).html(`<td id="updatestatus_${myArray[1]}">
+                                    <button type="button" onclick="updatestock(this)" id="update_${myArray[1]}" class="btn btn-success">Update</button>
+                                </td> `);
+        }
+
+        function updatestock(params) {
+            const myArray = params.id.split("_");
+            var addorsubunit = $("#aors_" + myArray[1]).val();
+            $.post("updatestock.php", {
+                    pdt_id: myArray[1],
+                    addorsub: addorsubunit
+                },
+                function(data, status) {
+
+                    $("#aors_" + myArray[1]).val(0);
+                    var currval = parseFloat($("#units_" + myArray[1]).html());
+                    var updated = currval + parseFloat(addorsubunit);
+                    if (updated <= 0) {
+                        $("#units_" + myArray[1]).html(0);
+                    } else
+                        $("#units_" + myArray[1]).html(updated);
+                    $("#updatestatus_" + myArray[1]).html(`UPDATED  `);
+                    $("#updatestatus_" + myArray[1]).append(`<button type="button" onclick="redo(this)" id="redo_${myArray[1]}" class="btn btn-info">Redo</button>`);
+                });
+        }
+        $(document).ready(function() {
+            $("#enterproduct").keyup(function() {
+                var s = this.value;
+                $.get('../apis/search/productsbyname.php?data=' + s, function(data, status) {
+                    var products = JSON.parse(data);
+                    $("#thetable").html('');
+                    products.forEach(element => {
+                        $("#thetable").append(`
+                        <tr>
+                                <th scope="row">${element.product_id}</th>
+                                <td>${element.pdt_name}</td>
+                                <td>${element.company_name}</td>
+                                <td><span id="units_${element.product_id}">${element.stockvalue} </span> ${element.unit_name}</td>
+                                <td>
+                                    <input type="text" name="aors" id="aors_${element.product_id}">
+                                </td>
+                                <td id="updatestatus_${element.product_id}">
+                                    <button type="button" onclick="updatestock(this)" id="update_${element.product_id}" class="btn btn-success">Update</button>
+                                </td>
+                            </tr>`);
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

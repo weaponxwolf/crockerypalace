@@ -41,12 +41,19 @@ include_once "../components/forchild/head.php";
                             <input name="last_name" type="text" class="form-control" placeholder="Enter Last Name ...">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">email</label>
-                            <input name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email address ...">
+                            <label for="exampleFormControlSelect1">Gender</label>
+                            <select name="gender" id="gender" class="form-control">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input name="email" type="email" autocomplete="off" class="form-control" aria-describedby="emailHelp" placeholder="Enter email address ...">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input name="password" type="password" class="form-control" placeholder="Password">
+                            <input name="password" autocomplete="off" type="password" class="form-control" placeholder="Password">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Phone No</label>
@@ -104,7 +111,7 @@ include_once "../components/forchild/head.php";
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) { ?>
-                                        <option><?php echo $row['role_name'] ?></option>
+                                        <option><?php echo $row['name'] ?></option>
                                 <?php
                                     }
                                 } else {
@@ -122,15 +129,16 @@ include_once "../components/forchild/head.php";
 
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         include_once '../class/User.php';
-                        if (isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']) == 'TRUE') {
+                        if (isset($_POST['first_name'], $_POST['last_name'],$_POST['gender'], $_POST['email'], $_POST['password'], $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']) == 'TRUE') {
                             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                            $isadded = AddUser($conn, $_POST['first_name'], $_POST['last_name'], $_POST['email'], $password, $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']);
+                            $isadded = AddUser($conn, $_POST['first_name'], $_POST['last_name'],$_POST['gender'], $_POST['email'], $password, $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']);
                             if ($isadded == 1) {
                     ?>
                                 <hr>
                                 <h3>Added Employee</h3>
                                 <ul class="list-group">
                                     <li class="list-group-item">Name : <?php echo $_POST['first_name']; ?> <?php echo $_POST['last_name']; ?></li>
+                                    <li class="list-group-item">Gender : <?php echo $_POST['gender']; ?> </li>
                                     <li class="list-group-item">Phone : <?php echo $_POST['phone_number']; ?> </li>
                                     <li class="list-group-item">Email : <?php echo $_POST['email']; ?> </li>
                                     <li class="list-group-item">Role : <?php echo $_POST['role']; ?> </li>

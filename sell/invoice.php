@@ -209,19 +209,21 @@ include_once "../components/forchild/head.php";
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <address class="text-right">
-                                                        Maxwell admin Inc, 45 NorthWest Street.<br>
-                                                        Sunrise Blvd, San Francisco.<br>
-                                                        00000 00000
+                                                        Q5MJ+X52, Bistupur Main Rd, 1<br>
+                                                        South Park, Bistupur, <br>
+                                                        Jamshedpur, Jharkhand 83100
                                                     </address>
                                                 </div>
                                             </div>
                                             <!-- Row end -->
                                             <!-- Row start -->
                                             <div class="row gutters">
-                                                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 text-dark">
                                                     <div class="invoice-details">
-                                                        <address>
-                                                            <?php echo $row['nameaddress'] ?>
+                                                        <address style="color:black">
+                                                            <?php echo $row['nameaddress']; ?>
+                                                            <br>
+                                                            Contact No:<?php echo $row['contactno']; ?>
                                                         </address>
                                                     </div>
                                                 </div>
@@ -257,9 +259,9 @@ include_once "../components/forchild/head.php";
                                                                 for ($i = 1; $i < count($items); $i++) {
                                                                     $subid = explode("-", $items[$i]);
                                                                     $id = $subid[0];
-                                                                    $quant=explode("@",$subid[1]);
-                                                                    $quantity=$quant[0];
-                                                                    $subtotal=$quant[1];
+                                                                    $quant = explode("@", $subid[1]);
+                                                                    $quantity = $quant[0];
+                                                                    $subtotal = $quant[1];
                                                                     $pdt_id = trim($id, '#');
                                                                     $sql2 = "SELECT companies.name AS company_name, products.name AS pdt_name FROM `products` LEFT JOIN `companies` ON companies.reg_id=products.company_id WHERE `pdt_id`='$pdt_id'";
                                                                     $result2 = $conn->query($sql2);
@@ -268,9 +270,9 @@ include_once "../components/forchild/head.php";
 
                                                                             <tr>
                                                                                 <td>
-                                                                                   <?php echo $row2['company_name']; ?>
+                                                                                    <?php echo $row2['company_name']; ?>
                                                                                     <p class="m-0 text-muted">
-                                                                                    <?php echo $row2['pdt_name']; ?>
+                                                                                        <?php echo $row2['pdt_name']; ?>
                                                                                     </p>
                                                                                 </td>
                                                                                 <td><?php echo $id; ?></td>

@@ -29,7 +29,7 @@ include_once "../components/forchild/head.php";
 
         <?php
         $id = $_GET['id'];
-        $sql = "SELECT * FROM `suppliers` WHERE `supplier_id`='$id'";
+        $sql = "SELECT  `url`,companies_deal_with,`notes`,phone,fax,email,`supplier_id`,registration_date,`address`,`address2`,postal_code,email, suppliers.name AS `name`, states.name AS `state`, cities.name AS `city`, countries.name AS `country`  FROM `suppliers` LEFT JOIN `countries` ON countries.id=suppliers.country LEFT JOIN `states` ON states.id=suppliers.state LEFT JOIN `cities` ON cities.id=suppliers.city WHERE suppliers.supplier_id='$id'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) { ?>
@@ -64,11 +64,11 @@ include_once "../components/forchild/head.php";
                                     <br>
                                     Postal Code : <?php echo $row['postal_code'] ?>
                                     <hr>
-                                    Phone : <?php echo $row['postal_code'] ?>
+                                    Phone : <?php echo $row['phone'] ?>
                                     <br>
-                                    FAX : <?php echo $row['postal_code'] ?>
+                                    FAX : <?php echo $row['fax'] ?>
                                     <br>
-                                    Email : <?php echo $row['postal_code'] ?>
+                                    Email : <?php echo $row['email'] ?>
                                     <hr>
 
                                 </div>
@@ -80,8 +80,8 @@ include_once "../components/forchild/head.php";
                                 <img src="../assets/img/default-supplier.png" style="max-height: 50vh;max-width:50vh" alt="project-image" class="rounded">
                                 <div class="project-info-box">
                                     <p><b>Website : </b><?php echo $row['url'] ?></p>
-                                    <p><b>Companies Deal With : </b><?php echo $row['url'] ?></p>
-                                    <p><b>Extra Notes : </b><?php echo $row['url'] ?></p>
+                                    <p><b>Companies Deal With : </b><?php echo $row['companies_deal_with'] ?></p>
+                                    <p><b>Extra Notes : </b><?php echo $row['notes'] ?></p>
 
                                     <a href="remove.php?id=<?php echo $row['supplier_id']; ?>"> <button type="button" class="btn btn-danger">Remove</button></a> |
                                     <a href="edit.php?id=<?php echo $row['supplier_id']; ?>"><button type="button" class="btn btn-dark">Edit</button></a>
