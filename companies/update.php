@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +112,7 @@ include_once '../components/forchild/head.php';
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 include_once '../class/Companies.php';
                                 if (isset($_POST['name'], $_POST['cin'], $_POST['contactno'], $_POST['email'], $_POST['website'], $_POST['country'], $_POST['state'], $_POST['city'], $_POST['address'], $_POST['pincode']) == 'TRUE') {
-                                    $isadded = UpdateCompany($conn,$id, $_POST['name'], $_POST['cin'], $_POST['contactno'], $_POST['email'], $_POST['website'], $_POST['state'], $_POST['country'], $_POST['city'], $_POST['address'], $_POST['pincode']);
+                                    $isadded = UpdateCompany($conn, $id, $_POST['name'], $_POST['cin'], $_POST['contactno'], $_POST['email'], $_POST['website'], $_POST['state'], $_POST['country'], $_POST['city'], $_POST['address'], $_POST['pincode']);
 
                                     if ($isadded) {
                             ?>
@@ -124,7 +127,7 @@ include_once '../components/forchild/head.php';
                                             <li class="list-group-item">Country : <?php echo $_POST['country']; ?> </li>
                                         </ul>
                                         <hr>
-                                        
+
                             <?php
                                     }
                                 } else {

@@ -1,3 +1,8 @@
+<?php session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -129,9 +134,9 @@ include_once "../components/forchild/head.php";
 
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         include_once '../class/User.php';
-                        if (isset($_POST['first_name'], $_POST['last_name'],$_POST['gender'], $_POST['email'], $_POST['password'], $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']) == 'TRUE') {
+                        if (isset($_POST['first_name'], $_POST['last_name'], $_POST['gender'], $_POST['email'], $_POST['password'], $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']) == 'TRUE') {
                             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                            $isadded = AddUser($conn, $_POST['first_name'], $_POST['last_name'],$_POST['gender'], $_POST['email'], $password, $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']);
+                            $isadded = AddUser($conn, $_POST['first_name'], $_POST['last_name'], $_POST['gender'], $_POST['email'], $password, $_POST['phone_number'], $_POST['qualification'], $_POST['privilege'], $_POST['role'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['country'], $_POST['pincode']);
                             if ($isadded == 1) {
                     ?>
                                 <hr>

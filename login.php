@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+if (isset($_SESSION['username'])) {
+    header('Location: home/');
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php

@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +85,7 @@ include_once "../components/forchild/head.php";
 
                 });
             $("#searchsupplier").keyup(function() {
-                $.get('../apis/search/suppliersbyname.php?data='+this.value, function(data, status, xhr) {
+                $.get('../apis/search/suppliersbyname.php?data=' + this.value, function(data, status, xhr) {
                     $("#thetable").html('');
                     var d = JSON.parse(data);
                     d.forEach(element => {

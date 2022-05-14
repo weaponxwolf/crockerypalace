@@ -1,3 +1,7 @@
+<?php session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -128,7 +132,7 @@ include_once "../components/forchild/head.php";
                                         </ul>
                                         <hr>
 
-                            <?php 
+                            <?php
                                     }
                                 } else {
                                     echo "Please Fill The Form Correctly !";

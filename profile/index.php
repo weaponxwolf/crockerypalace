@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -39,11 +42,11 @@ include_once "../components/forchild/head.php";
                                     <div class="card-body">
                                         <div class="d-flex flex-column align-items-center text-center">
                                             <?php
-                                            $img="";
-                                            if ($row['gender']=='male') {
-                                                $img="../assets/img/boy.png";
-                                            }else{
-                                                $img="../assets/img/girl.png";
+                                            $img = "";
+                                            if ($row['gender'] == 'male') {
+                                                $img = "../assets/img/boy.png";
+                                            } else {
+                                                $img = "../assets/img/girl.png";
                                             }
                                             ?>
                                             <img src="<?php echo $img ?>" alt="Admin" class="rounded-circle" width="150">

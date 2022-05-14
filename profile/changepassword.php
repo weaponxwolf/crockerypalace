@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -60,7 +63,7 @@ include_once "../components/forchild/head.php";
                     } else {
                         echo "Error updating record: " . $conn->error;
                     }
-                }else {
+                } else {
                     echo "Please Enter Same Password !";
                 }
             }

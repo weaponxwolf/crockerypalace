@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +65,7 @@ include_once '../components/forchild/head.php';
 
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Unit Name <span style="font-weight: bold;" id="unit_name"> : <?php echo $row['unit_name'] ?></span> </label>
-                                    <input name="unit" id="enterunit" type="text" class="form-control" value="<?php echo $row['unit_id'] ?>"   placeholder="Enter Unit Name...">
+                                    <input name="unit" id="enterunit" type="text" class="form-control" value="<?php echo $row['unit_id'] ?>" placeholder="Enter Unit Name...">
                                 </div>
 
                                 <div class="form-group">
@@ -71,7 +74,7 @@ include_once '../components/forchild/head.php';
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Price per Unit </label>
-                                    <input name="ppu" type="text"  value="<?php echo $row['ppu'] ?>" class="form-control" placeholder="Enter PPU...">
+                                    <input name="ppu" type="text" value="<?php echo $row['ppu'] ?>" class="form-control" placeholder="Enter PPU...">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Price Per Item </label>
@@ -90,7 +93,7 @@ include_once '../components/forchild/head.php';
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 include_once '../class/Products.php';
                                 if (isset($_POST['name'], $_POST['company'], $_POST['category'], $_POST['unit'], $_POST['unitcapacity'], $_POST['ppu'], $_POST['ppi']) == 'TRUE') {
-                                    $isadded = UpdateProduct($conn,$id, $_POST['name'], $_POST['company'], $_POST['category'], $_POST['unit'], $_POST['unitcapacity'], $_POST['ppu'], $_POST['ppi']);
+                                    $isadded = UpdateProduct($conn, $id, $_POST['name'], $_POST['company'], $_POST['category'], $_POST['unit'], $_POST['unitcapacity'], $_POST['ppu'], $_POST['ppi']);
 
                                     if ($isadded) {
                             ?>

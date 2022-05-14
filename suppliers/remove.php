@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +36,7 @@ include_once "../components/forchild/head.php";
             $id = $_GET['id'];
             $sql = "DELETE FROM `suppliers` WHERE `supplier_id`='$id'";
             if ($conn->query($sql) === TRUE) {
-                echo "Supplier ID: ".$id."<br> Removed Successfully !";
+                echo "Supplier ID: " . $id . "<br> Removed Successfully !";
             }
             ?>
         </div>
