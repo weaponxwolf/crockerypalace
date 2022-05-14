@@ -53,7 +53,7 @@ include_once "../components/forchild/head.php";
                         <tr>
                             <th scope="col">REG NO</th>
                             <th scope="col">Company Name</th>
-                            <th scope="col">CIN</th>
+                            <th scope="col">Location</th>
                             <th scope="col">MORE</th>
                         </tr>
                     </thead>
@@ -67,31 +67,27 @@ include_once "../components/forchild/head.php";
     <?php include_once '../components/forchild/scripts.php'; ?>
     <script>
         $(document).ready(function() {
-            fetch('../apis/select/selectall.php?data=companies')
+            fetch('../apis/select/companies.php')
                 .then(response => response.json())
                 .then(data => {
                     data.forEach(element => {
                         $("#thetable").append(`<tr>
                             <th scope="row">${element.reg_id}</th>
                             <td>${element.name}</td>
-                            <td>${element.cin}</td>
+                            <td>${element.city},${element.state},${element.country}</td>
                             <td><a href="alldetails.php?id=${element.reg_id}"><Button style="font-size:smaller;" class="btn btn-primary">More</Button></a></td>
                         </tr>`);
                     });
                 });
             $("#searchsupplier").keyup(function() {
-                $.get('../apis/search/searchall.php', {
-                    data: 'companies',
-                    search: 'name',
-                    value: this.value
-                }, function(data, status, xhr) {
+                $.get('../apis/search/companiesbyname.php?data='+this.value, function(data, status, xhr) {
                     $("#thetable").html('');
                     var d = JSON.parse(data);
                     d.forEach(element => {
                         $("#thetable").append(`<tr>
                             <th scope="row">${element.reg_id}</th>
                             <td>${element.name}</td>
-                            <td>${element.reg_id}</td>
+                            <td>${element.city},${element.state},${element.country}</td>
                             <td><a href="alldetails.php?id=${element.reg_id}"><Button style="font-size:smaller;" class="btn btn-primary">More</Button></a></td>
                         </tr>`);
                     });

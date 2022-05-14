@@ -54,10 +54,6 @@ include_once '../components/forchild/head.php';
                                     <input name="name" type="text" value="<?php echo $row['name']; ?>" class="form-control" placeholder="Enter Company Name...">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlInput1">CIN No </label>
-                                    <input name="cin" type="text" value="<?php echo $row['cin']; ?>" class="form-control" placeholder="Enter CIN...">
-                                </div>
-                                <div class="form-group">
                                     <label for="exampleFormControlInput1">Contact No </label>
                                     <input name="contactno" type="number" value="<?php echo $row['contact']; ?>" class="form-control" placeholder="Enter Contact No...">
                                 </div>
@@ -111,8 +107,8 @@ include_once '../components/forchild/head.php';
 
                             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 include_once '../class/Companies.php';
-                                if (isset($_POST['name'], $_POST['cin'], $_POST['contactno'], $_POST['email'], $_POST['website'], $_POST['country'], $_POST['state'], $_POST['city'], $_POST['address'], $_POST['pincode']) == 'TRUE') {
-                                    $isadded = UpdateCompany($conn, $id, $_POST['name'], $_POST['cin'], $_POST['contactno'], $_POST['email'], $_POST['website'], $_POST['state'], $_POST['country'], $_POST['city'], $_POST['address'], $_POST['pincode']);
+                                if (isset($_POST['name'], $_POST['website'], $_POST['country'], $_POST['state'], $_POST['city'], $_POST['address'], $_POST['pincode']) == 'TRUE') {
+                                    $isadded = UpdateCompany($conn, $id, $_POST['name'], $_POST['contactno'], $_POST['email'], $_POST['website'], $_POST['state'], $_POST['country'], $_POST['city'], $_POST['address'], $_POST['pincode']);
 
                                     if ($isadded) {
                             ?>
@@ -120,11 +116,8 @@ include_once '../components/forchild/head.php';
                                         <h3>Updated Company Details</h3>
                                         <ul class="list-group">
                                             <li class="list-group-item">Name : <?php echo $_POST['name']; ?></li>
-                                            <li class="list-group-item">CIN : <?php echo $_POST['cin']; ?></li>
+
                                             <li class="list-group-item">Reg Id : <?php echo $isadded ?> </li>
-                                            <li class="list-group-item">Email : <?php echo $_POST['email']; ?> </li>
-                                            <li class="list-group-item">Contact : <?php echo $_POST['contactno']; ?> </li>
-                                            <li class="list-group-item">Country : <?php echo $_POST['country']; ?> </li>
                                         </ul>
                                         <hr>
 

@@ -79,9 +79,10 @@ include_once "../components/forchild/head.php";
             fetch('../apis/select/selectall.php?data=units')
                 .then(response => response.json())
                 .then(data => {
+                    var count=1;
                     data.forEach(element => {
                         $("#thetable").append(`<tr id='row_${element.id}'>
-                            <th scope="row">${element.id}</th>
+                            <th scope="row">${count++}</th>
                             <td>${element.name}</td>
                             <td><Button id="delete_${element.id}" onclick="deleteCat(this)" style="font-size:smaller;" class="btn btn-danger">Delete</Button></td>
                         </tr>`);

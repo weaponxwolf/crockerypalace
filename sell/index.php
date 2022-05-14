@@ -205,6 +205,8 @@ include_once "../components/forchild/head.php";
                                                 CrockeryPalace
                                             </a>
                                         </div>
+
+
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <!-- <address class="text-right">
                                                 Maxwell admin Inc, 45 NorthWest Street.<br>
@@ -215,11 +217,14 @@ include_once "../components/forchild/head.php";
                                     </div>
                                     <!-- Row end -->
                                     <!-- Row start -->
+                                    <a href="../home/">Back</a>
                                     <div class="row gutters">
                                         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                                             <div class="invoice-details">
                                                 <address>
-                                                    <textarea id="nameaddress" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Name and Address"></textarea>
+
+                                                    <input id="name" type="name" rows="3" placeholder="Enter Name" class="col-12">
+                                                    <textarea id="address" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Address"></textarea>
                                                     <br>
                                                     <input id="contact" type="number" placeholder="Contact No">
                                                 </address>
@@ -309,7 +314,8 @@ include_once "../components/forchild/head.php";
         }
 
         function createInvoice() {
-            var nameaddress = $("#nameaddress").val();
+            var address = $("#address").val();
+            var name = $("#name").val();
             var contactno = $("#contact").val();
             var pdtarray = tablecont();
             var charges = $("#charges").val();
@@ -318,13 +324,15 @@ include_once "../components/forchild/head.php";
             var finalamt = parseInt(charges) - parseInt(discount) + parseInt(amt);
             $.post('createinvoice.php', {
                 products: pdtarray,
-                nameadd: nameaddress,
+                name: name,
+                address :address,
                 contact: contactno,
                 charges: charges,
                 discount: discount,
                 totalamt: amt,
                 finalamt: finalamt
             }, function(data, status) {
+                console.log(data);
                 window.location.href = "invoice.php?invoiceno=" + data;
             });
         }
@@ -362,7 +370,7 @@ include_once "../components/forchild/head.php";
                 var s = this.value;
                 $("#selectfromlist").html('');
                 if (s != "") {
-                    $.get('../apis/search/companiesbyname.php?name=' + s, function(data, status) {
+                    $.get('../apis/search/companiesbyname.php?data=' + s, function(data, status) {
                         var Companies = JSON.parse(data);
                         Companies.forEach(element => {
                             $("#selectfromlist").append(` <li onclick='enterComp(this)' id='comp_${element.reg_id}' class="list-group-item">${element.name}</li>`);

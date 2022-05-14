@@ -53,8 +53,7 @@ include_once "../components/forchild/head.php";
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Supplier</th>
-                            <th scope="col">City</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Location</th>
                             <th scope="col">More Details</th>
                         </tr>
                     </thead>
@@ -76,8 +75,7 @@ include_once "../components/forchild/head.php";
                         $("#thetable").append(`<tr>
                             <th scope="row">${element.supplier_id}</th>
                             <td>${element.name}</td>
-                            <td>${element.city}</td>
-                            <td>${element.email}</td>
+                            <td>${element.city},${element.state},${element.country}</td>
                             <td>
                             <a href="alldetails.php?id=${element.supplier_id}"><Button onclick='fetchdetails(this)' style="font-size:smaller;" class="btn btn-primary">More</Button></a></td>
                         </tr>`);
@@ -91,9 +89,8 @@ include_once "../components/forchild/head.php";
                     d.forEach(element => {
                         $("#thetable").append(`<tr>
                             <th scope="row">${element.supplier_id}</th>
-                            <td>${element.name}</td>
-                            <td>${element.city}</td>
-                            <td>${element.email}</td>
+                            <td>${element.name}</td>                 
+                            <td>${element.city},${element.state},${element.country}</td>
                             <td>
                             <a href="alldetails.php?id=${element.supplier_id}"><Button onclick='fetchdetails(this)' style="font-size:smaller;" class="btn btn-primary">More</Button></a></td>
                         </tr>`);

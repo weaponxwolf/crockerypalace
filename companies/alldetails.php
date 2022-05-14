@@ -32,7 +32,7 @@ include_once "../components/forchild/head.php";
 
         <?php
         $id = $_GET['id'];
-        $sql = "SELECT companies.name AS `name`, reg_id, cin, contact,email,`address`,`pincode`,`website`,registration_date, cities.name AS city,countries.name AS country,states.name AS `state` FROM `companies`LEFT JOIN `states` ON companies.state=states.id LEFT JOIN countries ON companies.country=countries.id LEFT JOIN cities ON companies.city=cities.id  WHERE companies.reg_id='$id'";
+        $sql = "SELECT companies.name AS `name`, reg_id, contact,email,`address`,`pincode`,`website`,registration_date, cities.name AS city,countries.name AS country,states.name AS `state` FROM `companies`LEFT JOIN `states` ON companies.state=states.id LEFT JOIN countries ON companies.country=countries.id LEFT JOIN cities ON companies.city=cities.id  WHERE companies.reg_id='$id'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) { ?>
@@ -60,7 +60,6 @@ include_once "../components/forchild/head.php";
                                         <div class="row">
                                             <div class="col-lg-5">
                                                 <dl class="dl-horizontal">
-                                                    <dt>CIN : <?php echo $row['cin'] ?></dt>
                                                     <dt>Contact: <?php echo $row['contact'] ?></dt>
                                                     <dt>Email: <?php echo $row['email'] ?> </dt>
                                                     <dt>Website: <?php echo $row['website'] ?></dt>

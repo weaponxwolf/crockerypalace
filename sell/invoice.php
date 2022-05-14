@@ -197,8 +197,11 @@ include_once "../components/forchild/head.php";
                                             <!-- Row start -->
                                             <div class="row gutters">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                                    <div class="custom-actions-btns mb-5" onclick="window.print()">
-                                                        <a href="#" class="btn btn-secondary">
+                                                    <div class="custom-actions-btns mb-5">
+                                                        <a href="deleteinvoice.php?invoiceno=<?php echo $invoice_no ?>" class="btn btn-danger">
+                                                            <i class="icon-printer"></i> Delete
+                                                        </a>
+                                                        <a href="#" class="btn btn-secondary" onclick="window.print()">
                                                             <i class="icon-printer"></i> Print
                                                         </a>
                                                     </div>
@@ -209,6 +212,7 @@ include_once "../components/forchild/head.php";
                                             <div class="row gutters">
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                                     <h1>CrockeryPalace</h1>
+                                                    <a href="../sales/">Back</a>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <address class="text-right">
@@ -224,9 +228,11 @@ include_once "../components/forchild/head.php";
                                                 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 text-dark">
                                                     <div class="invoice-details">
                                                         <address style="color:black">
-                                                            <?php echo $row['nameaddress']; ?>
+                                                            <?php echo $row['name']; ?>
                                                             <br>
-                                                            Contact No:<?php echo $row['contactno']; ?>
+                                                            Address : <?php echo $row['address']; ?>
+                                                            <br>
+                                                            Contact No : <?php echo $row['contactno']; ?>
                                                         </address>
                                                     </div>
                                                 </div>

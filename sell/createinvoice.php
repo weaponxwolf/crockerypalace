@@ -2,7 +2,8 @@
 
 include_once '../conn/db.php';
 
-$nameaddress = $_POST['nameadd'];
+$name = $_POST['name'];
+$address=$_POST['address'];
 $contact = $_POST['contact'];
 $total = $_POST['totalamt'];
 $discount = $_POST['discount'];
@@ -15,7 +16,7 @@ foreach ($_POST['products'] as $key => $value) {
 }
 $invoiceno = date("ymdhis");
 
-$sql = "INSERT INTO `invoice`( `invoiceno`, `nameaddress`,`contactno`, `boughtpdts`, `total`, `discount`, `tax`, `finalamt`) VALUES ('$invoiceno','$nameaddress','$contact','$pdtsandquant','$total','$discount','$tax','$finalamt')";
+$sql = "INSERT INTO `invoice`( `invoiceno`, `name`,`address`,`contactno`, `boughtpdts`, `total`, `discount`, `tax`, `finalamt`) VALUES ('$invoiceno','$name','$address','$contact','$pdtsandquant','$total','$discount','$tax','$finalamt')";
 $result = $conn->query($sql);
 if ($result) {
     echo $invoiceno;

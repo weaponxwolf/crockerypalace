@@ -92,9 +92,9 @@ include_once "../components/forchild/head.php";
         function redo(params) {
             const myArray = params.id.split("_");
             $("#aors_" + myArray[1]).val(0);
-            $("#updatestatus_" + myArray[1]).html(`<td id="updatestatus_${myArray[1]}">
+            $("#updatestatus_" + myArray[1]).html(`
                                     <button type="button" onclick="updatestock(this)" id="update_${myArray[1]}" class="btn btn-success">Update</button>
-                                </td> `);
+                                `);
         }
 
         function updatestock(params) {
