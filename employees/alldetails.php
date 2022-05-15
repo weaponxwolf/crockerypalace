@@ -24,7 +24,6 @@ include_once "../components/forchild/head.php";
         <div class="page-section counter-section">
             <div class="container">
                 <div class="row align-items-center text-center">
-
                 </div>
             </div>
         </div>
@@ -102,6 +101,7 @@ include_once "../components/forchild/head.php";
 
     </main>
     <?php include_once '../components/forchild/scripts.php'; ?>
+
 </body>
 
 </html>
