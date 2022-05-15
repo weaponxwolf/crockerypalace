@@ -35,7 +35,7 @@ include_once "../components/forchild/head.php";
         </div>
         <?php
         $userid = $_GET['id'];
-        $sql = "SELECT username,first_name,last_name,qualification,`address`,cities.name AS city,countries.name AS country,states.name AS `state`,privilege,`role`,email,phone,pincode FROM `users`LEFT JOIN `states` ON users.state=states.id LEFT JOIN countries ON users.country=countries.id LEFT JOIN cities ON users.city=cities.id  WHERE `username`='$userid' ";
+        $sql = "SELECT username,gender,first_name,last_name,qualification,`address`,cities.name AS city,countries.name AS country,states.name AS `state`,privilege,`role`,email,phone,pincode FROM `users`LEFT JOIN `states` ON users.state=states.id LEFT JOIN countries ON users.country=countries.id LEFT JOIN cities ON users.city=cities.id  WHERE `username`='$userid' ";
 
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -46,7 +46,15 @@ include_once "../components/forchild/head.php";
                         <div class="col-md-7">
                             <div class="card p-3 py-4">
                                 <div class="text-center">
-                                    <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
+                                    <?php
+                                    $img = "";
+                                    if ($row['gender'] == 'male') {
+                                        $img = "../assets/img/boy.png";
+                                    } else {
+                                        $img = "../assets/img/girl.png";
+                                    }
+                                    ?>
+                                    <img src="<?php echo $img; ?>" width="100" class="rounded-circle">
                                 </div>
                                 <div class="text-center mt-3">
                                     <?php
