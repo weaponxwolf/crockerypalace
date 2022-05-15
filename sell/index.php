@@ -432,8 +432,8 @@ include_once "../components/forchild/head.php";
                 }
                 $("#enter").html(`<div style="display: flex;" id="morebuttons">
                                         <div style="padding: 1rem"><button type="button" class="btn btn-success">Total: Rs <span id='totalamt'>${total}</span></button></div>
-                                        <div style="padding: 1rem"><input type="number" id="charges" placeholder="Extra Charges + TAX"></div>
-                                        <div style="padding: 1rem"><input type="number" id="discount" placeholder="Discount"></div>
+                                        <div style="padding: 1rem"><input type="number" value="0" id="charges" placeholder="Extra Charges + TAX"></div>
+                                        <div style="padding: 1rem"><input type="number" value="0" id="discount" placeholder="Discount"></div>
                                         <div style="padding: 1rem"><button type="button" id="grandtotalbtn" onclick="grandTotal()" class="btn btn-primary">Grand Total</button></div>
                                     </div>`);
             });
